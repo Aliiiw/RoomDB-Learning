@@ -12,4 +12,8 @@ class StudentRepository(private val studentDao: StudentDao) {
         studentDao.addNewStudent(student = student)
     }
 
+    suspend fun updateStudent(student: Student) {
+        studentDao.updateStudent(student = student)
+    }
+
 }

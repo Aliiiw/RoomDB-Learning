@@ -1,9 +1,6 @@
 package com.example.mymvvpapp.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.mymvvpapp.data.model.Student
 import com.example.mymvvpapp.utils.Constants.STUDENT_TABLE
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +18,9 @@ interface StudentDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewStudent(student: Student)
+
+    @Update
+    suspend fun updateStudent(student: Student)
 
 
 }
