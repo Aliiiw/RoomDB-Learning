@@ -8,4 +8,8 @@ class StudentRepository(private val studentDao: StudentDao) {
 
     val allStudents: Flow<List<Student>> = studentDao.getAllStudents()
 
+    suspend fun addNewStudent(student: Student) {
+        studentDao.addNewStudent(student = student)
+    }
+
 }
