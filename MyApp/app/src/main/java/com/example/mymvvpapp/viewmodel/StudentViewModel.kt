@@ -2,7 +2,6 @@ package com.example.mymvvpapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mymvvpapp.data.db.SchoolDatabase
 import com.example.mymvvpapp.data.model.Student

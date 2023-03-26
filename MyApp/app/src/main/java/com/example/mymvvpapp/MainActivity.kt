@@ -21,10 +21,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
+import com.example.mymvvpapp.data.model.Grade
 import com.example.mymvvpapp.data.model.Post
+import com.example.mymvvpapp.data.model.Student
 import com.example.mymvvpapp.ui.theme.MyMVVPAppTheme
 import com.example.mymvvpapp.viewmodel.PostsViewModel
 import com.example.mymvvpapp.viewmodel.RandomPersonViewModel
+import com.example.mymvvpapp.viewmodel.StudentViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.measureTimeMillis
@@ -41,7 +44,33 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
 
-                    ObserveRandomPersonViewModel()
+                    val viewModel by viewModels<StudentViewModel>()
+//                    val student1 = Student(
+//                        1,
+//                        "ali",
+//                        "rahimi",
+//                        "228",
+//                        Grade.THREE
+//                    )
+//
+//                    val student2 = Student(
+//                        2,
+//                        "sina",
+//                        "mamadi",
+//                        "123",
+//                        Grade.TWO
+//                    )
+
+//                    viewModel.addNewStudent(student = student1)
+//                    viewModel.addNewStudent(student = student2)
+
+                    GlobalScope.launch {
+                        viewModel.allStudents.collectLatest { students ->
+                            for (item in students) {
+                                Log.e("2323", item.name)
+                            }
+                        }
+                    }
                 }
             }
         }
