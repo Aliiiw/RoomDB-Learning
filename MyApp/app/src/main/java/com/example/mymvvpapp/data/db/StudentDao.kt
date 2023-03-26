@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.mymvvpapp.data.model.Student
 import com.example.mymvvpapp.utils.Constants.STUDENT_TABLE
 import kotlinx.coroutines.flow.Flow
+import retrofit2.http.DELETE
 
 @Dao
 interface StudentDao {
@@ -22,5 +23,10 @@ interface StudentDao {
     @Update
     suspend fun updateStudent(student: Student)
 
+    @DELETE
+    suspend fun deleteStudent(student: Student)
+
+    @Query("DELETE FROM $STUDENT_TABLE")
+    suspend fun deleteAllStudent()
 
 }
