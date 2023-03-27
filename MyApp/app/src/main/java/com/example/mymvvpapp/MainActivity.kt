@@ -43,48 +43,41 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
-
-                    val viewModel by viewModels<StudentViewModel>()
-                    val student1 = Student(
-                        1,
-                        "ali",
-                        "rahimi",
-                        "228",
-                        Grade.THREE
-                    )
-
-                    val student2 = Student(
-                        2,
-                        "sina",
-                        "mamadi",
-                        "123",
-                        Grade.TWO
-                    )
-
-                    viewModel.addNewStudent(student = student1)
-                    viewModel.addNewStudent(student = student2)
-
-//                    val student2Updated = Student(
-//                        2,
-//                        "sina",
-//                        "mamadi",
-//                        "123456789",
-//                        Grade.ONE
-//                    )
-
-                   // viewModel.deleteAllStudent()
-
-                    GlobalScope.launch {
-                        viewModel.allStudents.collectLatest { students ->
-                            for (item in students) {
-                                Log.e("2323", item.name)
-                            }
-                        }
-                    }
+                    ObserveStudentViewModel()
                 }
             }
         }
     }
+
+
+    @Composable
+    fun ObserveStudentViewModel() {
+        val viewModel by viewModels<StudentViewModel>()
+
+        var studentList by remember { mutableStateOf(emptyList<Student>()) }
+
+        Column() {
+            StudentView(studentList = studentList)
+        }
+
+        LaunchedEffect(true) {
+            viewModel.allStudents.collectLatest { students ->
+                studentList = students
+            }
+        }
+    }
+
+    @Composable
+    fun StudentView(studentList: List<Student>) {
+        LazyColumn() {
+            items(studentList) { student ->
+                Column(modifier = Modifier.padding(8.dp)) {
+                    Text(text = student.name)
+                }
+            }
+        }
+    }
+
 
     //buffer nabood: emit(1) + 100 -> collect(1) + 300 + emit(2) + 100 -> collect(2) + 300 ...
     //ba buffer: emit(1) + 100 mire collect mibine 300 ta jadare mire emit(2) hnuz collect nayomade mire emit(3) , ....
