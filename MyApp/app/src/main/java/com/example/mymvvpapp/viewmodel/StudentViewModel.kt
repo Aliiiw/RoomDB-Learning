@@ -25,4 +25,22 @@ class StudentViewModel(application: Application) : AndroidViewModel(application)
             repository.addNewStudent(student = student)
         }
     }
+
+    fun updateStudent(student: Student) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateStudent(student = student)
+        }
+    }
+
+    fun deleteStudent(student: Student) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteStudent(student = student)
+        }
+    }
+
+    fun deleteAllStudent() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllStudents()
+        }
+    }
 }

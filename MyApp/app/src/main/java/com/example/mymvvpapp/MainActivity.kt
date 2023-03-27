@@ -45,24 +45,34 @@ class MainActivity : ComponentActivity() {
                 ) {
 
                     val viewModel by viewModels<StudentViewModel>()
-//                    val student1 = Student(
-//                        1,
-//                        "ali",
-//                        "rahimi",
-//                        "228",
-//                        Grade.THREE
-//                    )
-//
-//                    val student2 = Student(
+                    val student1 = Student(
+                        1,
+                        "ali",
+                        "rahimi",
+                        "228",
+                        Grade.THREE
+                    )
+
+                    val student2 = Student(
+                        2,
+                        "sina",
+                        "mamadi",
+                        "123",
+                        Grade.TWO
+                    )
+
+                    viewModel.addNewStudent(student = student1)
+                    viewModel.addNewStudent(student = student2)
+
+//                    val student2Updated = Student(
 //                        2,
 //                        "sina",
 //                        "mamadi",
-//                        "123",
-//                        Grade.TWO
+//                        "123456789",
+//                        Grade.ONE
 //                    )
 
-//                    viewModel.addNewStudent(student = student1)
-//                    viewModel.addNewStudent(student = student2)
+                   // viewModel.deleteAllStudent()
 
                     GlobalScope.launch {
                         viewModel.allStudents.collectLatest { students ->
