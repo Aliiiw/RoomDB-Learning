@@ -5,4 +5,6 @@ object Constants {
     const val DATABASE_NAME = "school_database"
 
     const val BASE_URL = "https://jsonplaceholder.typicode.com"
+
+    const val DATASTORE_NAME = "my_data_store"
 }
