@@ -3,6 +3,7 @@ package com.example.mymvvpapp.viewmodel
 import androidx.lifecycle.ViewModel
 import com.example.mymvvpapp.data.model.Post
 import com.example.mymvvpapp.data.network.ApiInterface
+import com.example.mymvvpapp.data.repository.PostRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PostsViewModel @Inject constructor(
-    private val api: ApiInterface
+    private val repository: PostRepository
 ) : ViewModel() {
 
     //live data
@@ -33,7 +34,7 @@ class PostsViewModel @Inject constructor(
 
         CoroutineScope(Dispatchers.IO).launch {
 
-            val response = api.getAllPosts()
+            val response = repository.getAllPosts()
 
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.body() != null) {
