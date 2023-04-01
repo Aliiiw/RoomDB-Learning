@@ -44,35 +44,35 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
-                    val std1 = Student(
-                        id = 1,
-                        name = "ali",
-                        family = "rahimi",
-                        nationalCode = "228",
-                        grade = Grade.THREE
-                    )
+//                    val std1 = Student(
+//                        id = 1,
+//                        name = "ali",
+//                        family = "rahimi",
+//                        nationalCode = "228",
+//                        grade = Grade.THREE
+//                    )
+//
+//                    val std2 = Student(
+//                        id = 2,
+//                        name = "ali",
+//                        family = "sbgdsgfb",
+//                        nationalCode = "554",
+//                        grade = Grade.ONE
+//                    )
+//
+//                    val std3 = Student(
+//                        id = 3,
+//                        name = "dgbsdfb",
+//                        family = "rahimi",
+//                        nationalCode = "45563",
+//                        grade = Grade.THREE
+//                    )
+//                    val viewModel by viewModels<StudentViewModel>()
+//                    viewModel.addNewStudent(std1)
+//                    viewModel.addNewStudent(std2)
+//                    viewModel.addNewStudent(std3)
 
-                    val std2 = Student(
-                        id = 2,
-                        name = "ali",
-                        family = "sbgdsgfb",
-                        nationalCode = "554",
-                        grade = Grade.ONE
-                    )
-
-                    val std3 = Student(
-                        id = 3,
-                        name = "dgbsdfb",
-                        family = "rahimi",
-                        nationalCode = "45563",
-                        grade = Grade.THREE
-                    )
-                    val viewModel by viewModels<StudentViewModel>()
-                    viewModel.addNewStudent(std1)
-                    viewModel.addNewStudent(std2)
-                    viewModel.addNewStudent(std3)
-
-                    ObserveStudentViewModel()
+                    ObservePostsViewModel()
                 }
             }
         }

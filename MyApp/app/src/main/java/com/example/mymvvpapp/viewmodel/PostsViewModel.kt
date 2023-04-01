@@ -1,17 +1,20 @@
 package com.example.mymvvpapp.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mymvvpapp.data.model.Post
-import com.example.mymvvpapp.data.network.ApiClient
+import com.example.mymvvpapp.data.network.ApiInterface
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class PostsViewModel : ViewModel() {
+@HiltViewModel
+class PostsViewModel @Inject constructor(
+    private val api: ApiInterface
+) : ViewModel() {
 
     //live data
 //    val postsList = MutableLiveData<List<Post>>()
@@ -30,7 +33,7 @@ class PostsViewModel : ViewModel() {
 
         CoroutineScope(Dispatchers.IO).launch {
 
-            val response = ApiClient.api.getAllPosts()
+            val response = api.getAllPosts()
 
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.body() != null) {
