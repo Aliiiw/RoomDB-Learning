@@ -28,10 +28,11 @@ import com.example.mymvvpapp.ui.theme.MyMVVPAppTheme
 import com.example.mymvvpapp.viewmodel.PostsViewModel
 import com.example.mymvvpapp.viewmodel.RandomPersonViewModel
 import com.example.mymvvpapp.viewmodel.StudentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.measureTimeMillis
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     @OptIn(DelicateCoroutinesApi::class)
