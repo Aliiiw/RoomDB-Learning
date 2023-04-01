@@ -25,6 +25,7 @@ import com.example.mymvvpapp.data.model.Grade
 import com.example.mymvvpapp.data.model.Post
 import com.example.mymvvpapp.data.model.Student
 import com.example.mymvvpapp.ui.theme.MyMVVPAppTheme
+import com.example.mymvvpapp.viewmodel.DataStoreViewModel
 import com.example.mymvvpapp.viewmodel.PostsViewModel
 import com.example.mymvvpapp.viewmodel.RandomPersonViewModel
 import com.example.mymvvpapp.viewmodel.StudentViewModel
@@ -32,6 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.measureTimeMillis
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
@@ -72,9 +74,27 @@ class MainActivity : ComponentActivity() {
 //                    viewModel.addNewStudent(std2)
 //                    viewModel.addNewStudent(std3)
 
-                    ObservePostsViewModel()
+                    TestDataStore()
                 }
             }
+        }
+    }
+
+    @Composable
+    fun TestDataStore() {
+        val viewModel by viewModels<DataStoreViewModel>()
+        viewModel.saveUserPhone("09171234567")
+        Thread.sleep(1000)
+
+        viewModel.getUserPhone2()
+        LaunchedEffect(Dispatchers.Main) {
+            viewModel.userPhone.collectLatest {
+                Log.e("2323", "ravesh2: $it")
+            }
+        }
+
+        LaunchedEffect(Dispatchers.Main) {
+            Log.e("2323", "ravesh3: ${viewModel.getUserPhone3()}")
         }
     }
 
